@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <limits>
+#include <iomanip>
 using namespace std;
 class BankAccount {
     private:
@@ -30,6 +33,7 @@ class BankAccount {
         void displayAccountInfo() {
             cout << "Account Number: " << accountNumber << endl;
             cout << "Account Holder: " << accountHolderName << endl;
+            cout << fixed << setprecision(2);
             cout << "Balance: " << balance << endl;
         }
 };
@@ -38,16 +42,33 @@ int main(){
 
     cout << "Welcome to the Bank Account Management System!" << endl;
     cout << "Enter Account Details:" << endl;
+    int choice;
+    do {
+        cout << "1. Create Account" << endl;
+        cout << "2. Exit" << endl;
+        cout << "Choose an option: ";
+        cin >> choice;
+    } while (choice != 1 && choice != 2);
 
     string accNum, accHolder;
     double initialBalance;
 
-    cout << "Account Number: ";
-    cin >> accNum;
-    cout << "Account Holder Name: ";
-    cin >> accHolder;
-    cout << "Initial Balance: ";
-    cin >> initialBalance;
+   if(choice == 1) {
+       cout << "Account Number: ";
+       cin >> accNum;
+       cin.ignore();
+       cout << "Account Holder Name: ";
+       getline(cin, accHolder);
+       cout << "Initial Balance: ";
+    while (!(cin >> initialBalance) || initialBalance < 0) {
+        cout << "Enter a valid non-negative amount: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    } else {
+         cout << "Exiting the system. Goodbye!" << endl;
+         return 0;
+            }
 
     BankAccount account(accNum, accHolder, initialBalance);
 
