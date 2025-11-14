@@ -37,7 +37,19 @@ class BankAccount {
 int main(){
 
     cout << "Welcome to the Bank Account Management System!" << endl;
-    BankAccount account("123456789", "Chan khosa", 1000.0);
+    cout << "Enter Account Details:" << endl;
+
+    string accNum, accHolder;
+    double initialBalance;
+
+    cout << "Account Number: ";
+    cin >> accNum;
+    cout << "Account Holder Name: ";
+    cin >> accHolder;
+    cout << "Initial Balance: ";
+    cin >> initialBalance;
+
+    BankAccount account(accNum, accHolder, initialBalance);
 
     account.displayAccountInfo();
 
