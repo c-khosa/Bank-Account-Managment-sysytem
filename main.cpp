@@ -3,47 +3,57 @@
 #include <limits>
 #include <iomanip>
 using namespace std;
-class BankAccount {
-    private:
-        string accountNumber;
-        string accountHolderName;
-        double balance;
+class BankAccount
+{
+private:
+    string accountNumber;
+    string accountHolderName;
+    double balance;
 
-    public:
-        BankAccount(string accNum, string accHolder, double initialBalance) {
-            accountNumber = accNum;
-            accountHolderName = accHolder;
-            balance = initialBalance;
-        }
+public:
+    BankAccount(string accNum, string accHolder, double initialBalance)
+    {
+        accountNumber = accNum;
+        accountHolderName = accHolder;
+        balance = initialBalance;
+    }
 
-        void deposit(double amount) {
-            balance += amount;
-            cout << "Deposited: " << amount << endl;
-        }
+    void deposit(double amount)
+    {
+        balance += amount;
+        cout << "Deposited: " << amount << endl;
+    }
 
-        void withdraw(double amount) {
-            if (amount <= balance) {
-                balance -= amount;
-                cout << "Withdrew: " << amount << endl;
-            } else {
-                cout << "Insufficient funds!" << endl;
-            }
+    void withdraw(double amount)
+    {
+        if (amount <= balance)
+        {
+            balance -= amount;
+            cout << "Withdrew: " << amount << endl;
         }
+        else
+        {
+            cout << "Insufficient funds!" << endl;
+        }
+    }
 
-        void displayAccountInfo() {
-            cout << "Account Number: " << accountNumber << endl;
-            cout << "Account Holder: " << accountHolderName << endl;
-            cout << fixed << setprecision(2);
-            cout << "Balance: " << balance << endl;
-        }
+    void displayAccountInfo()
+    {
+        cout << "Account Number: " << accountNumber << endl;
+        cout << "Account Holder: " << accountHolderName << endl;
+        cout << fixed << setprecision(2);
+        cout << "Balance: " << balance << endl;
+    }
 };
 
-int main(){
+int main()
+{
 
     cout << "Welcome to the Bank Account Management System!" << endl;
     cout << "Enter Account Details:" << endl;
     int choice;
-    do {
+    do
+    {
         cout << "1. Create Account" << endl;
         cout << "2. Exit" << endl;
         cout << "Choose an option: ";
@@ -53,22 +63,26 @@ int main(){
     string accNum, accHolder;
     double initialBalance;
 
-   if(choice == 1) {
-       cout << "Account Number: ";
-       cin >> accNum;
-       cin.ignore();
-       cout << "Account Holder Name: ";
-       getline(cin, accHolder);
-       cout << "Initial Balance: ";
-    while (!(cin >> initialBalance) || initialBalance < 0) {
-        cout << "Enter a valid non-negative amount: ";
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    if (choice == 1)
+    {
+        cout << "Account Number: ";
+        cin >> accNum;
+        cin.ignore();
+        cout << "Account Holder Name: ";
+        getline(cin, accHolder);
+        cout << "Initial Balance: ";
+        while (!(cin >> initialBalance) || initialBalance < 0)
+        {
+            cout << "Enter a valid non-negative amount: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
     }
-    } else {
-         cout << "Exiting the system. Goodbye!" << endl;
-         return 0;
-            }
+    else
+    {
+        cout << "Exiting the system. Goodbye!" << endl;
+        return 0;
+    }
 
     BankAccount account(accNum, accHolder, initialBalance);
 
